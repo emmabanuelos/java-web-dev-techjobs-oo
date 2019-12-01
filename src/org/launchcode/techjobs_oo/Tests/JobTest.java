@@ -9,41 +9,40 @@ import static org.junit.Assert.*;
 
 public class JobTest {
 
-    JobTest testObjectOne;
-    JobTest testObjectTwo;
+    Job testClass1;
+    Job testClass2;
 
-    Job testObjectFull;
-
+    Job testClassFull;
 
     @Before
     public void Job() {
-        testObjectOne = new JobTest();
-        testObjectTwo = new JobTest();
-        testObjectFull = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        testClass1 = new Job();
+        testClass2 = new Job();
+
+        testClassFull = new Job("Product tester", new Employer("ACME"),
+                new Location("Desert"), new PositionType("Quality control"),
+                new CoreCompetency("Persistence"));
     }
 
     @Test
-    public void testSettingJobID() {
-        int testObjectOneByAddingOne = testObjectOne.getId() + 1;
-        assertEquals(testObjectOneByAddingOne, testObjectTwo.getId());
+    public void testSettingJobId() {
+        int testClassOneIdPlusOne = testClass1.getId() + 1;
+        assertEquals(testClassOneIdPlusOne, testClass2.getId());
     }
 
-    private int getId() {
-        return 0;
-    }
-
-    public void testJobConstructorSetsAllFields {
-    assertTrue(testObjectFull instanceof Job);
-    assertEquals("Product Tester", testObjectFull.getName());
-    assertEquals("ACME", testObjectFull.getEmployer().getValue());
-    assertEquals("Desert", testObjectFull.getLocation().getValue());
-    assertEquals("Quality Control", testObjectFull.getPositionType().getValue());
-    assertEquals("Persistence", testObjectFull.getCoreCompentecy().getValue());
+    @Test
+    public void testJobConstructorSetsAllFields() {
+        assertTrue(testClassFull instanceof Job);
+        assertEquals("Product tester", testClassFull.getName());
+        assertEquals("ACME", testClassFull.getEmployer().getValue());
+        assertEquals("Desert", testClassFull.getLocation().getValue());
+        assertEquals("Quality control", testClassFull.getPositionType().getValue());
+        assertEquals("Persistence", testClassFull.getCoreCompetency().getValue());
     }
 
     @Test
     public void testJobForEquality() {
-        Job sameJobOne = testObjectFull;
+        Job sameJobOne = testClassFull;
 
         Job sameJobTwo = new Job("Product tester", new Employer("ACME"),
                 new Location("Desert"), new PositionType("Quality control"),
@@ -58,7 +57,7 @@ public class JobTest {
 
     @Test
     public void testJobForBlankLineBeforeAndAfterObject() {
-        Job testBlankLines = testObjectFull;
+        Job testBlankLines = testClassFull;
 
         String testBlankLinesString = testBlankLines.toString();
         int indexOfLastChar = testBlankLinesString.length();
@@ -71,14 +70,14 @@ public class JobTest {
 
     @Test
     public void testJobForContainsAllLabels() {
-        String testContainsLabel = testObjectFull.toString();
+        String testContainsLabel = testClassFull.toString();
 
-        assertTrue(testContainsLabel.contains("ID: " + testObjectFull.getId() + "\n"));
-        assertTrue(testContainsLabel.contains("Name: " + testObjectFull.getName() + "\n"));
-        assertTrue(testContainsLabel.contains("Employer: " + testObjectFull.getEmployer() + "\n"));
-        assertTrue(testContainsLabel.contains("Location: " + testObjectFull.getLocation() + "\n"));
-        assertTrue(testContainsLabel.contains("Position Type: " + testObjectFull.getPositionType() + "\n"));
-        assertTrue(testContainsLabel.contains("Core Competency: " + testObjectFull.getCoreCompetency() + "\n"));
+        assertTrue(testContainsLabel.contains("ID: " + testClassFull.getId() + "\n"));
+        assertTrue(testContainsLabel.contains("Name: " + testClassFull.getName() + "\n"));
+        assertTrue(testContainsLabel.contains("Employer: " + testClassFull.getEmployer() + "\n"));
+        assertTrue(testContainsLabel.contains("Location: " + testClassFull.getLocation() + "\n"));
+        assertTrue(testContainsLabel.contains("Position Type: " + testClassFull.getPositionType() + "\n"));
+        assertTrue(testContainsLabel.contains("Core Competency: " + testClassFull.getCoreCompetency() + "\n"));
     }
 
     @Test
@@ -96,5 +95,5 @@ public class JobTest {
         assertTrue(emptyTestClassString.contains("Position Type: Data not available"));
         assertTrue(emptyTestClassString.contains("Core Competency: Data not available"));
     }
-}
 
+}
